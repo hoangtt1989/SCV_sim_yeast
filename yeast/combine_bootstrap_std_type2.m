@@ -16,8 +16,16 @@ res.PSCV_split = struct;
 
 method_names = {'AIC', 'BIC', 'EBIC', 'FSCV', 'PIC', 'PSCV', 'CV'};
 
+load('bootstrap_std_type2_1_40.mat')
+run combine_repeated.m
 
-load('bootstrap_std_type2_1_200.mat')
+load('bootstrap_std_type2_41_80.mat')
+run combine_repeated.m
+
+load('bootstrap_std_type2_81_120.mat')
+run combine_repeated.m
+
+load('bootstrap_std_type2_121_200.mat')
 run combine_repeated.m
 
 %%%%%get medians

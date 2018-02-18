@@ -4,7 +4,8 @@ close all
 %%%%%experiment controls
 sim_ctrl.nsim = 200;
 sel_ctrl.methods = {'AIC', 'BIC', 'EBIC', 'SF_PIC_fractional','SCV_none2', 'SCV_none10', 'SCV_none5', 'SCV_plugin', 'SCV_fractional'};
-% sel_ctrl.methods = {'AIC', 'AIC_MA', 'BIC', 'BIC_MA', 'jackknife_MA', 'EBIC', 'SF_PIC_fractional','SCV_none2', 'SCV_none10', 'SCV_none5', 'SCV_plugin', 'SCV_fractional'};
+%%%run the following line instead to include model aggregation methods
+% sel_ctrl.methods = {'AIC', 'AIC_MA', 'BIC', 'BIC_MA', 'EBIC', 'SF_PIC_fractional','SCV_none2', 'SCV_none10', 'SCV_none5', 'SCV_plugin', 'SCV_fractional'};
 type_ctrl = struct;
 verbose = 1;
 %%%%%

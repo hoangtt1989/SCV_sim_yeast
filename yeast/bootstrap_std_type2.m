@@ -14,7 +14,6 @@ m = size(resp, 2);
 rank_up = 15;
 card_up = 106;
 
-% train_pct = .5;
 
 nrep = 200;
 
