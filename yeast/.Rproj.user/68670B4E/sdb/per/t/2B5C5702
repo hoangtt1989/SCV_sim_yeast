@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1515434064835.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2B5C5702",
+    "lastKnownWriteTime" : 4294967302,
+    "last_content_update" : 1515434064835,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "B59B5B04",
+        "caption" : "TF_df",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=TF_df&cache_key=B59B5B04",
+        "displayedObservations" : 106,
+        "environment" : "",
+        "object" : "TF_df",
+        "preview" : 0,
+        "totalObservations" : 106,
+        "variables" : 4
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

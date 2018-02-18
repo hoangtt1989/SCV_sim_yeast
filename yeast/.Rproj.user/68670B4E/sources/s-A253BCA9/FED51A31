@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1515436577661.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "FED51A31",
+    "lastKnownWriteTime" : 7,
+    "last_content_update" : 1515436577661,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "60BF880D",
+        "caption" : "pairs_df2",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=pairs_df2&cache_key=60BF880D",
+        "displayedObservations" : 31,
+        "environment" : "",
+        "object" : "pairs_df2",
+        "preview" : 0,
+        "totalObservations" : 31,
+        "variables" : 3
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

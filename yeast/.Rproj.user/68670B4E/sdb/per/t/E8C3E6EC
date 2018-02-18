@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list = ls())\n\nset.seed(123)\n\npacman::p_load(tidyverse, phyloseq, stringr, forcats, rrr, readr, janitor, scales, readxl, gridExtra, caret, expm, matlib, GO.db)\n\nTF_df <- readRDS('TF_names.rds') %>% \n  dplyr::rename(idx = pos)\nidx_max <- 5\n\n\n#######whitened\nsheet_names <- c('PSCV', 'FSCV', 'CV')\nplot_titles <- data_frame(sheet_names = sheet_names, plot_titles = c('Plug-in SCV', 'Fractional SCV', 'CV'))\nfile_name <- 'repeated_trn50_white_type2_idx.xls'\nwhite <- map_df(sheet_names, function(x) {read_xls(file_name, x) %>% \n    clean_names() %>%\n    mutate(title = plot_titles %>%\n             filter(sheet_names == x) %>%\n             pull(plot_titles),\n           TF = TF_df$TF[idx]) %>%\n    arrange(desc(freq))}) %>%\n  group_by(title) %>%\n  filter(row_number() %in% 1:idx_max) %>%\n  ungroup() %>%\n  nest(-title) %>%\n  mutate(plots = map2(data, title, function(x, y) {x %>%\n      ggplot(aes(x = reorder(TF, -freq, mean), y = freq, group = 1)) +\n      geom_point() +\n      geom_line(linetype = 'dashed') +\n      scale_y_continuous(breaks = unique(x$freq)) +\n      labs(x= 'TF', y = 'Frequency', title = unique(y)) +\n      theme_bw() +\n      theme(axis.text = element_text(size = 10), plot.title = element_text(hjust = 0.5))}))\ngrid.arrange(white$plots[[1]], white$plots[[2]], white$plots[[3]], nrow = 1)\n#######whitened\n\n#######std\nsheet_names <- c('PSCV', 'FSCV', 'CV')\nplot_titles <- data_frame(sheet_names = sheet_names, plot_titles = c('Plug-in SCV', 'Fractional SCV', 'CV'))\nfile_name <- 'repeated_trn50_std_type2_idx.xls'\nstd <- map_df(sheet_names, function(x) {read_xls(file_name, x) %>% \n    clean_names() %>%\n    mutate(title = plot_titles %>%\n             filter(sheet_names == x) %>%\n             pull(plot_titles),\n           TF = TF_df$TF[idx]) %>%\n    arrange(desc(freq))}) %>%\n  group_by(title) %>%\n  filter(row_number() %in% 1:idx_max) %>%\n  ungroup() %>%\n  nest(-title) %>%\n  mutate(plots = map2(data, title, function(x, y) {x %>%\n      ggplot(aes(x = reorder(TF, -freq, mean), y = freq, group = 1)) +\n      geom_point() +\n      geom_line(linetype = 'dashed') +\n      scale_y_continuous(breaks = unique(x$freq)) +\n      labs(x= 'TF', y = 'Frequency', title = unique(y)) +\n      theme_bw() +\n      theme(axis.text = element_text(size = 10), plot.title = element_text(hjust = 0.5))}))\ngrid.arrange(std$plots[[1]], std$plots[[2]], std$plots[[3]], nrow = 1)\n#######std\n\n\n#######cent\nsheet_names <- c('PSCV', 'FSCV', 'CV')\nplot_titles <- data_frame(sheet_names = sheet_names, plot_titles = c('Plug-in SCV', 'Fractional SCV', 'CV'))\nfile_name <- 'repeated_trn50_cent_type2_idx.xls'\ncent <- map_df(sheet_names, function(x) {read_xls(file_name, x) %>% \n    clean_names() %>%\n    mutate(title = plot_titles %>%\n             filter(sheet_names == x) %>%\n             pull(plot_titles),\n           TF = TF_df$TF[idx]) %>%\n    arrange(desc(freq))}) %>%\n  group_by(title) %>%\n  filter(row_number() %in% 1:idx_max) %>%\n  ungroup() %>%\n  nest(-title) %>%\n  mutate(plots = map2(data, title, function(x, y) {x %>%\n      ggplot(aes(x = reorder(TF, -freq, mean), y = freq, group = 1)) +\n      geom_point() +\n      geom_line(linetype = 'dashed') +\n      scale_y_continuous(breaks = unique(x$freq)) +\n      labs(x= 'TF', y = 'Frequency', title = unique(y)) +\n      theme_bw() +\n      theme(axis.text = element_text(size = 10), plot.title = element_text(hjust = 0.5))}))\ngrid.arrange(cent$plots[[1]], cent$plots[[2]], cent$plots[[3]], nrow = 1)\n#######cent\n",
+    "created" : 1515431221763.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2838495189",
+    "id" : "E8C3E6EC",
+    "lastKnownWriteTime" : 1515431883,
+    "last_content_update" : 1515431883437,
+    "path" : "~/Dropbox/Literature-Hoang/Working_papers/cross-validation/Code/applied_data/yeast/read_idx.R",
+    "project_path" : "read_idx.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

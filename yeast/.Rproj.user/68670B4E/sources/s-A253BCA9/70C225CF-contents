@@ -1,0 +1,122 @@
+rm(list = ls())
+
+pacman::p_load(tidyverse, phyloseq, GO.db, gridExtra, RColorBrewer, sommer)
+
+
+TF_df <- readRDS('TF_names.rds')
+pairs_df <- readRDS('TF_co_pairs.rds')
+
+
+##########whitened
+file_names <- c('PSCV_repeated_trn50_white_type2_idx_pairs.txt', 
+                'FSCV_repeated_trn50_white_type2_idx_pairs.txt', 
+                'CV_repeated_trn50_white_type2_idx_pairs.txt')
+
+pts <- data_frame(file_names = file_names) %>% 
+  mutate(pairs = map(file_names, function(inp) {
+    tmp <- read_delim(inp, delim = '\t') %>% 
+      as.matrix()
+    rownames(tmp) <- TF_df$TF
+    colnames(tmp) <- TF_df$TF
+    
+    pairs_df2 <- pairs_df %>%
+      mutate(freq = map2_int(TF1, TF2, ~ tmp[.x, .y])) %>% 
+      unite(TF_pair, TF1, TF2, sep = '-')
+  })) %>% 
+  mutate(bar_plots = map(pairs, function(x) {x %>% 
+      filter(freq != 0) %>%
+      # arrange(freq) %>% 
+      ggplot() + 
+      geom_col(aes(x = TF_pair, y = freq)) + 
+      labs(x = 'Cooperative pair', y = 'Frequency')}))
+# 
+# tmp <- read_delim(file_names[1], delim = '\t') %>% 
+#   as.matrix()
+# rownames(tmp) <- TF_df$TF
+# colnames(tmp) <- TF_df$TF
+# 
+# pairs_df2 <- pairs_df %>%
+#   mutate(freq = map2_int(TF1, TF2, ~ tmp[.x, .y])) %>% 
+#   unite(TF_pair, TF1, TF2, sep = '-')
+# 
+# ggplot(pairs_df2 %>% filter(freq != 0)) +
+#   geom_col(aes(x = TF_pair, y = freq))
+
+##########whitened
+
+
+
+##########cent
+file_names <- c('PSCV_repeated_trn50_std_type2_idx_pairs.txt', 
+                'FSCV_repeated_trn50_std_type2_idx_pairs.txt', 
+                'CV_repeated_trn50_std_type2_idx_pairs.txt')
+
+pts <- data_frame(file_names = file_names) %>% 
+  mutate(pairs = map(file_names, function(inp) {
+    tmp <- read_delim(inp, delim = '\t') %>% 
+      as.matrix()
+    rownames(tmp) <- TF_df$TF
+    colnames(tmp) <- TF_df$TF
+    
+    pairs_df2 <- pairs_df %>%
+      mutate(freq = map2_int(TF1, TF2, ~ tmp[.x, .y])) %>% 
+      unite(TF_pair, TF1, TF2, sep = '-')
+  })) %>% 
+  mutate(bar_plots = map(pairs, function(x) {x %>% 
+      filter(freq != 0) %>%
+      # arrange(freq) %>% 
+      ggplot() + 
+      geom_col(aes(x = TF_pair, y = freq)) + 
+      labs(x = 'Cooperative pair', y = 'Frequency')}))
+# 
+# tmp <- read_delim(file_names[1], delim = '\t') %>% 
+#   as.matrix()
+# rownames(tmp) <- TF_df$TF
+# colnames(tmp) <- TF_df$TF
+# 
+# pairs_df2 <- pairs_df %>%
+#   mutate(freq = map2_int(TF1, TF2, ~ tmp[.x, .y])) %>% 
+#   unite(TF_pair, TF1, TF2, sep = '-')
+# 
+# ggplot(pairs_df2 %>% filter(freq != 0)) +
+#   geom_col(aes(x = TF_pair, y = freq))
+
+##########std
+
+
+##########std
+file_names <- c('PSCV_repeated_trn50_cent_type2_idx_pairs.txt', 
+                'FSCV_repeated_trn50_cent_type2_idx_pairs.txt', 
+                'CV_repeated_trn50_cent_type2_idx_pairs.txt')
+
+pts <- data_frame(file_names = file_names) %>% 
+  mutate(pairs = map(file_names, function(inp) {
+    tmp <- read_delim(inp, delim = '\t') %>% 
+      as.matrix()
+    rownames(tmp) <- TF_df$TF
+    colnames(tmp) <- TF_df$TF
+    
+    pairs_df2 <- pairs_df %>%
+      mutate(freq = map2_int(TF1, TF2, ~ tmp[.x, .y])) %>% 
+      unite(TF_pair, TF1, TF2, sep = '-')
+  })) %>% 
+  mutate(bar_plots = map(pairs, function(x) {x %>% 
+      filter(freq != 0) %>%
+      # arrange(freq) %>% 
+      ggplot() + 
+      geom_col(aes(x = TF_pair, y = freq)) + 
+      labs(x = 'Cooperative pair', y = 'Frequency')}))
+# 
+# tmp <- read_delim(file_names[1], delim = '\t') %>% 
+#   as.matrix()
+# rownames(tmp) <- TF_df$TF
+# colnames(tmp) <- TF_df$TF
+# 
+# pairs_df2 <- pairs_df %>%
+#   mutate(freq = map2_int(TF1, TF2, ~ tmp[.x, .y])) %>% 
+#   unite(TF_pair, TF1, TF2, sep = '-')
+# 
+# ggplot(pairs_df2 %>% filter(freq != 0)) +
+#   geom_col(aes(x = TF_pair, y = freq))
+
+##########cent

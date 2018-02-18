@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list = ls())\n\npacman::p_load(tidyverse, phyloseq, GO.db, gridExtra, RColorBrewer, sommer)\n\nGO_df <- readRDS('GO_top1000')\n\nfile_names <- c('PSCV_split_fukuyama_repeated_top1000_idx_pairs.txt', \n                'FSCV_split_fukuyama_repeated_top1000_idx_pairs.txt', \n                'CV_fukuyama_repeated_top1000_idx_pairs.txt')\n\nkeep_idx <- 1:10\n# my_palette <- colorRampPalette(c(\"red\", \"yellow\", \"green\"))(n = 50)\n# col_breaks = c(seq(0, 100,length=100), # for red\n#                seq(6,100,length=95),  # for yellow\n#                seq(0,5,length=5)) # for green\nmats <- map(file_names, function(x) {\n  tmp <- read_delim(x, '\\t') %>%\n    as.matrix()\n  rownames(tmp) <- GO_df$GO\n  colnames(tmp) <- GO_df$GO\n  desc_idx <- order(diag(tmp), decreasing = T)\n  tmp <- tmp[desc_idx, desc_idx]\n  pt <- heatmap(tmp[keep_idx, keep_idx], \n          Rowv = desc_idx[keep_idx], symm = T, main = x, col= colorRampPalette(brewer.pal(8, \"Blues\"))(30))}) %>%\n  setNames(file_names)\n\nmats$PSCV_split_fukuyama_repeated_top1000_idx_pairs.txt[1:5, 1:5]\nmats$FSCV_split_fukuyama_repeated_top1000_idx_pairs.txt[1:5, 1:5]\nmats$CV_fukuyama_repeated_top1000_idx_pairs.txt[1:10, 1:10]\n\nheatmap(mats$FSCV_split_fukuyama_repeated_top1000_idx_pairs.txt[1:10, 1:10], \n        Rowv = order(diag(mats$FSCV_split_fukuyama_repeated_top1000_idx_pairs.txt[1:10, 1:10]), decreasing = T), symm = T)\n",
+    "created" : 1515435428662.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "537748741",
+    "id" : "CA8F053A",
+    "lastKnownWriteTime" : 1511812951,
+    "last_content_update" : 1511812951,
+    "path" : "~/Dropbox/Literature-Hoang/Working_papers/cross-validation/Code/applied_data/fukuyama_screening/read_pairs_top1000.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

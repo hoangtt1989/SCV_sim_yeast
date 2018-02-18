@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1515685723613.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A5A5388B",
+    "lastKnownWriteTime" : 1518901497,
+    "last_content_update" : 1518901497,
+    "path" : "~/Dropbox/Literature-Hoang/Working_papers/cross-validation/Code/applied_data/yeast/bootstrap_std_type2_freq_plots.R",
+    "project_path" : "bootstrap_std_type2_freq_plots.R",
+    "properties" : {
+        "cursorPosition" : "147,0",
+        "scrollLine" : "119"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

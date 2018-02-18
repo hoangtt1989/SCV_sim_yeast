@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list = ls())\n\npacman::p_load(tidyverse, spls, stringr)\n\n\ndata(yeast)\n\n\nyeast$y\nyeast$x\n\n\nwrite_csv(as.data.frame(yeast$x), 'X_mat.csv', col_names = F)\nwrite_csv(as.data.frame(yeast$y), 'Y_mat.csv', col_names = F)\n\n\n###the 21 experimentally verified TFs\nexp_TF <- c('ACE2', 'SWI4', 'SWI5', 'SWI6', 'MBP1', 'STB1', 'FKH1', 'FKH2',\n            'NDD1', 'MCM1', 'ABF1', 'BAS1', 'CBF1', 'GCN4', 'GCR1', 'GCR2',\n            'LEU3', 'MET31', 'REB1', 'SKN7', 'STE12')\nco_pairs <- c('MBP1', 'SWI6', 'MCM1', 'NDD1', 'FKH2', 'MCM1', 'FKH2', 'NDD1',\n              'HIR1', 'HIR2', 'PDR1', 'SMP1', 'SWI4', 'SWI6', 'GAT3', 'PDR1',\n              'FHL1', 'GAT3', 'NRG1', 'YAP6', 'GAT3', 'MSN4', 'REB1', 'SKN7',\n              'ACE2', 'REB1', 'HSF1', 'REB1', 'GAL4', 'RGM1', 'GCN4', 'SUM1',\n              'FKH1', 'FKH2', 'CIN5', 'NRG1', 'SMP1', 'SWI5', 'FKH1', 'NDD1',\n              'ARG80', 'ARG81', 'MSN4', 'YAP5', 'ACE2', 'SWI5', 'CIN5', 'YAP6',\n              'STB1', 'SWI4', 'ARG81', 'GCN4', 'NDD1', 'STB1', 'DAL81', 'STP1',\n              'ACE2', 'HSF1', 'HSF1', 'SKN7', 'NRG1', 'PHD1')\n\nexp_pos <- map_int(exp_TF, ~ which(str_detect(colnames(yeast$x), .)))\n\nexp_df <- data_frame(TF = exp_TF, pos = exp_pos)\n\nwhich(str_detect(colnames(yeast$x), exp_TF[1]))\n\nwrite_csv(as.data.frame(exp_pos), 'TF21_pos.csv', col_names = F)\n\nTF_df <- data_frame(TF = str_split(colnames(yeast$x), '_', simplify = T)[, 1], pos = 1:length(colnames(yeast$x))) %>% \n  mutate(in_21 = TF %in% exp_TF) %>% \n  mutate(in_co_pairs = TF %in% unique(co_pairs))\n\n\nsaveRDS(TF_df, 'TF_names.rds')\n\n\nTF1 <- c('MBP1', 'MCM1', 'FKH2', 'FKH2', 'HIR1', 'PDR1', 'SWI4', 'GAT3', 'FHL1',\n         'NRG1', 'GAT3', 'REB1', 'ACE2', 'HSF1', 'GAL4', 'GCN4', 'FKH1', 'CIN5',\n         'SMP1', 'FKH1', 'ARG80', 'MSN4', 'ACE2', 'CIN5', 'STB1', 'ARG81', 'NDD1',\n         'DAL81', 'ACE2', 'HSF1', 'NRG1')\nTF2 <- c('SWI6', 'NDD1', 'MCM1', 'NDD1', 'HIR2', 'SMP1', 'SWI6', 'PDR1', 'GAT3',\n         'YAP6', 'MSN4', 'SKN7', 'REB1', 'REB1', 'RGM1', 'SUM1', 'FKH2', 'NRG1',\n         'SWI5', 'NDD1', 'ARG81', 'YAP5', 'SWI5', 'YAP6', 'SWI4', 'GCN4', 'STB1',\n         'STP1', 'HSF1', 'SKN7', 'PHD1')\n\npairs_df <- data_frame(TF1 = TF1, TF2 = TF2)\n\nsaveRDS(pairs_df, 'TF_co_pairs.rds')\n",
+    "created" : 1515078590592.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2816369944",
+    "id" : "BF970EB0",
+    "lastKnownWriteTime" : 1515435970,
+    "last_content_update" : 1515435970238,
+    "path" : "~/Dropbox/Literature-Hoang/Working_papers/cross-validation/Code/applied_data/yeast/explore.R",
+    "project_path" : "explore.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

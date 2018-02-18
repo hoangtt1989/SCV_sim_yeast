@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list = ls())\n\npacman::p_load(tidyverse)\n\n\nrank_df <- read_csv('bootstrap_std_type2_ranks.csv') %>% \n  gather(Method, Estimates) %>% \n  mutate(type = 'Rank')\n\n# ggplot(rank_df, aes(x = Method, y = Rank)) +\n#   geom_boxplot() +\n#   theme_bw()\n\ncard_df <- read_csv('bootstrap_std_type2_cards.csv') %>% \n  gather(Method, Estimates) %>% \n  mutate(type = 'Cardinality')\n\n# ggplot(card_df, aes(x = Method, y = Cardinality)) +\n#   geom_boxplot() +\n#   theme_bw()\n\ncomb_df <- bind_rows(rank_df, card_df)\n\nggplot(comb_df, aes(x = Method, y = Estimates)) +\n  geom_boxplot() +\n  facet_wrap(~ type, scales = 'free_y') +\n  labs(x = '', y = '') +\n  theme_bw()\n\n",
+    "created" : 1515610696025.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3797904622",
+    "id" : "FDAB277B",
+    "lastKnownWriteTime" : 1515610715,
+    "last_content_update" : 1515610715447,
+    "path" : "~/Dropbox/Literature-Hoang/Working_papers/cross-validation/Code/applied_data/yeast/bootstrap_std_type2_boxplots.R",
+    "project_path" : "bootstrap_std_type2_boxplots.R",
+    "properties" : {
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

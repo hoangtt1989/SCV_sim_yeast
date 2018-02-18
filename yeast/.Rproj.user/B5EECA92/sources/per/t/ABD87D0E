@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1518927028429.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "465974732",
+    "id" : "ABD87D0E",
+    "lastKnownWriteTime" : 1518927158,
+    "last_content_update" : 1518927158628,
+    "path" : "~/Dropbox/Literature-Hoang/Working_papers/cross-validation/Code/JRSSB_submit/yeast/bootstrap_std_type2_freq_plots.R",
+    "project_path" : "bootstrap_std_type2_freq_plots.R",
+    "properties" : {
+        "cursorPosition" : "9,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

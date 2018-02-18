@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1515610696025.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "FDAB277B",
+    "lastKnownWriteTime" : 1518555485,
+    "last_content_update" : 1518555485103,
+    "path" : "~/Dropbox/Literature-Hoang/Working_papers/cross-validation/Code/applied_data/yeast/bootstrap_std_type2_boxplots.R",
+    "project_path" : "bootstrap_std_type2_boxplots.R",
+    "properties" : {
+        "cursorPosition" : "29,60",
+        "scrollLine" : "14"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

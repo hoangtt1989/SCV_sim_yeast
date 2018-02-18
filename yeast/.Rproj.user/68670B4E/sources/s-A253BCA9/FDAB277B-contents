@@ -1,0 +1,72 @@
+rm(list = ls())
+
+pacman::p_load(tidyverse, forcats)
+
+err_df <- read_csv('bootstrap_std_type2_errs.csv') %>% 
+  gather(Method, Estimates) %>% 
+  mutate(type = 'MSE')
+
+
+rank_df <- read_csv('bootstrap_std_type2_ranks.csv') %>% 
+  gather(Method, Estimates) %>% 
+  mutate(type = 'Rank')
+
+# ggplot(rank_df, aes(x = Method, y = Rank)) +
+#   geom_boxplot() +
+#   theme_bw()
+
+card_df <- read_csv('bootstrap_std_type2_cards.csv') %>% 
+  gather(Method, Estimates) %>% 
+  mutate(type = 'Number of selected predictors')
+
+# ggplot(card_df, aes(x = Method, y = Cardinality)) +
+#   geom_boxplot() +
+#   theme_bw()
+
+# comb_df <- bind_rows(rank_df, card_df) %>%
+#   filter(Method != 'FSCV') %>% 
+#   mutate(type = fct_relevel(type, 'Rank', 'Number of selected predictors'),
+#          Method = fct_relevel(Method, 'PSCV', 'CV')) %>% 
+#   mutate(Method = factor(Method, labels = c('SCV', 'CV')))
+
+comb_df <- bind_rows(err_df, rank_df, card_df) %>%
+  filter(Method != 'FSCV') %>%
+  mutate(type = fct_relevel(type, 'Rank', 'Number of selected predictors', 'MSE'),
+         Method = fct_relevel(Method, 'PSCV', 'CV')) %>%
+  mutate(Method = factor(Method, labels = c('SCV', 'CV')))
+
+stat_df <- comb_df %>% 
+  group_by(Method, type) %>% 
+  summarise(median = median(Estimates)) %>% 
+  group_by(Method)
+stat_df
+(97 + 18 - 5) * 5 + 97 * log(exp(1) * 106 / 97)
+(45.5 + 18 - 7) * 7 + 45.5 * log(exp(1) * 106 / 45.5)
+(97 + 18 - 5) * 5
+(45.5 + 18 - 7) * 7
+
+# type_labels <- c('Rank', 'Number of predictors')
+
+ggplot(comb_df, aes(x = Method, y = Estimates)) +
+  geom_boxplot(fatten = 3.5) +
+  facet_wrap(~ type, scales = 'free_y') +
+  labs(x = '', y = '') +
+  theme_bw()
+
+
+rank_df2 <- read_csv('bootstrap_std_type2_ranks.csv') %>% 
+  gather(Method, Estimates) %>% 
+  dplyr::rename(rank = Estimates)
+
+
+card_df2 <- read_csv('bootstrap_std_type2_cards.csv') %>% 
+  gather(Method, Estimates) %>% 
+  dplyr::rename(card = Estimates)
+
+comb_df2 <- bind_cols(rank_df2, card_df2) %>%
+  dplyr::select(-Method1) %>% 
+  group_by(Method) %>% 
+  mutate(DF = (card + 18 - rank) * rank) %>% 
+  summarise(median = median(DF))
+
+comb_df2

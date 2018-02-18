@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list = ls())\n\npacman::p_load(tidyverse, phyloseq, GO.db, gridExtra, RColorBrewer, sommer)\n\n\nTF_df <- readRDS('TF_names.rds')\npairs_df <- readRDS('TF_co_pairs.rds')\n\n\nfile_names <- c('PSCV_repeated_trn50_white_type2_idx_pairs.txt', \n                'FSCV_repeated_trn50_white_type2_idx_pairs.txt', \n                'CV_repeated_trn50_white_type_2idx_pairs.txt')\n\n\ntmp <- read_delim(file_names[1], delim = '\\t') %>% \n  as.matrix()\nrownames(tmp) <- TF_df$TF\ncolnames(tmp) <- TF_df$TF\n\n\ntst <- tmp[pairs_df$TF1, pairs_df$TF2]\n\nheatmap(tst, Rowv = NA, Colv = NA, symm = F, col= colorRampPalette(brewer.pal(8, \"Blues\"))(30))\n",
+    "created" : 1515435246067.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2859180206",
+    "id" : "C41E3C74",
+    "lastKnownWriteTime" : 1515436169,
+    "last_content_update" : 1515436169345,
+    "path" : "~/Dropbox/Literature-Hoang/Working_papers/cross-validation/Code/applied_data/yeast/pairs_heatmap.R",
+    "project_path" : "pairs_heatmap.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

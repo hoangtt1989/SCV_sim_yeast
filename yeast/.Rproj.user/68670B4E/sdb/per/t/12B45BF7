@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1515423557494.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "12B45BF7",
+    "lastKnownWriteTime" : 4494903808,
+    "last_content_update" : 1515423557494,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "6DB8F48C",
+        "caption" : "exp_df",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=exp_df&cache_key=6DB8F48C",
+        "displayedObservations" : 21,
+        "environment" : "",
+        "object" : "exp_df",
+        "preview" : 0,
+        "totalObservations" : 21,
+        "variables" : 2
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
